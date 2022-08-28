@@ -23,7 +23,8 @@ using std::stoi;
 
 //Funciones 
 void ayuda(); 
-int cmd(string comando); 
+int cmd(string comando);
+bool file_is_empty(ifstream& pFile);
 void cargar(string nombre_archivo); 
 vector<string> split (string str, char bases);  
 void conteo (char byte); 
@@ -68,13 +69,13 @@ int main()
                 break;
         
             case 2:
+                cout << "  Comando ingresado correctamente"<< endl;
                 numFrec=0; 
                 if (palabras.size() == 1)
                     cout <<"\nNo ha ingresado el nombre del archivo, \nvuelva a escribir comando"<<endl;
                 else if (palabras.size() == 2) {
                     nombre_archivo = palabras[1];
                     cargar(nombre_archivo);
-                cout << "  Comando ingresado correctamente"<< endl;
                 cout<<endl<<"Ingresa comando deseado"<<endl; 
                 } else
                     cout << "\n Los parametros no cumplen con los requisitos del comando";
@@ -235,29 +236,40 @@ void ayuda()
     cout << "  - salir " << endl << endl;
 }
 
+bool file_is_empty(ifstream& pFile)
+{
+    return pFile.peek() == ifstream::traits_type::eof();
+}
+
 //Función comando cargar 
 void cargar(string nombre_archivo)
 {
-    cout << "carga: " << nombre_archivo;
-    ifstream lectura(nombre_archivo, ios::binary);
-        
-    if (!lectura.fail()) {
-            cout << "No se pudo leer el archvio: " << nombre_archivo << endl;
-        }
+    string myText;
 
-    vector<char> contenidoArchivo; 
-    string lineasec;
-    char byte; 
+    cout << endl << "cargando archivo:  " << nombre_archivo << endl;
+    ifstream archivo_lectura(nombre_archivo);
 
-    while( !lectura.eof() && !lectura.fail() ){ 
-        lectura.read((char *) &lineasec, sizeof(string));
-    
-        //infoGenetica.setlSecuencias();
-    
-        contenidoArchivo.push_back(byte);
-        conteo(byte);
+    // Verificar si el archivo existe
+    if (!archivo_lectura) {
+        cout << endl << nombre_archivo << ":    No se encuentra o no puede leerse" << endl;
+        return;
     }
-    lectura.close();
+
+    // Verificar si el archivo esta vacio
+    if (file_is_empty(archivo_lectura)){
+        cout << endl << nombre_archivo << ":    No contiene ninguna secuencia" << endl;
+        return;
+    }
+
+    // Leer archivo
+    while(getline (archivo_lectura, myText))
+    {
+        if (myText[0] == '>'){
+            cout << myText[0];
+        }
+        cout << myText << endl << endl;
+    }
+    archivo_lectura.close();
 }
 
 
