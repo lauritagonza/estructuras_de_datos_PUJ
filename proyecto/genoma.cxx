@@ -25,7 +25,8 @@ void Genoma::AgregarLineaSecuencia(std::string descripcion_secuencia, std::strin
   std::list<Secuencia>::iterator itSec;
   std::list<Secuencia>::iterator itNewSec = l_secuencias.end();
 
-  for (itSec = l_secuencias.begin(); itSec != l_secuencias.end(); itSec++ ) {
+  for (itSec = l_secuencias.begin(); itSec != l_secuencias.end(); itSec++ )
+  {
     if (itSec->ObtenerDescripcion() == descripcion_secuencia) {
         itSec->AgregarLinea(linea_secuencia);
         itNewSec = itSec;
@@ -40,7 +41,7 @@ void Genoma::AgregarLineaSecuencia(std::string descripcion_secuencia, std::strin
     this->n_secuencias++;
   }
 
-  std::cout << ">>>" << n_secuencias << std::endl;
+  // std::cout << ">>>" << n_secuencias << std::endl;
 }
 
 int Genoma::ObtenerNSecuencias()
@@ -48,18 +49,27 @@ int Genoma::ObtenerNSecuencias()
   return (n_secuencias);
 }
 
-/*
-void Genoma::setlSecuencias(std::vector<::codigoGenetico> secuencias) {
-  this->lsecuencias= secuencias; 
-  }
+void Genoma::ListarSecuencias()
+{
+  int n_bases;
+  char tipo;
+  std::list<Secuencia>::iterator itSec;
+  std::string linea, descripcion;
 
-std::vector<::codigoGenetico> getlSecuencias(){
-  return lsecuencias; 
+  for (itSec = l_secuencias.begin(); itSec != l_secuencias.end(); itSec++ )
+  {
+    n_bases = itSec->EncontrarBases();
+    tipo = itSec->getTipo();
+    descripcion = itSec->ObtenerDescripcion();
+
+    if (tipo == 'C')
+      std::cout << std::endl << "Secuencia " << descripcion << " contiene " << n_bases << " bases." << std::endl;
+    else if (tipo == 'I')
+      std::cout << std::endl << "Secuencia " << descripcion << " contiene al menos " << n_bases << " bases." << std::endl;
+  }
+  std::cout << std::endl;
 }
-std::string getNombre(){
-  return genoma::nombre; 
+
+void Genoma::EliminarSecuencias() {
+  l_secuencias.clear();
 }
-std::string getTipo(){
-  return ::tipo; 
-}
-*/

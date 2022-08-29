@@ -10,7 +10,9 @@ class Genoma {
         Genoma();
         void AgregarLineaSecuencia(std::string descripcion_secuencia, std::string l_secuencia);
         int ObtenerNSecuencias();
-        void setNombre(std::string nom); 
+        void setNombre(std::string nom);
+        void ListarSecuencias();
+        void EliminarSecuencias();
 
         
         // void setlSecuencias(std::vector<Secuencia> secuencias);

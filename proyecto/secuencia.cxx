@@ -4,6 +4,7 @@
 // constructor
 Secuencia::Secuencia( ){
   descripcion = " ";
+  tipo = 'C';
 }
 
 // Obtener descripcion de la secuencia
@@ -21,13 +22,39 @@ void Secuencia::AgregarLinea(std::string linea_secuencia){
   l_lineas.push_back(linea_secuencia);
 }
 
+int Secuencia::EncontrarBases()
+{
+  int n;
+  std::string linea;
+  std::list<std::string>::iterator itLineas;
 
-// agregar una nueva area de conocimiento
-// void Secuencia::setSecuencia(std::vector<::base> secuencia) {
-//   this->secuencia= secuencia; 
-//   }
-/*
-std::vector<::base> getSecuencia(){
-  return secuencia; 
+  bases.clear();
+
+  for (itLineas = l_lineas.begin(); itLineas != l_lineas.end(); itLineas++) {
+    linea = *itLineas;
+    n = linea.length();
+
+    for (int i = 0; i < n; i++) {
+
+      if (linea[i] == '-')
+        this->tipo = 'I';
+      
+      // std::cout << linea[i] << " ";
+      bases.insert(linea[i]);
+    }
+  }
+
+  std::cout << std::endl <<"Bases encontradas: " << std::endl; 
+
+  std::set<char>::iterator itBases;
+
+  for (itBases = bases.begin(); itBases != bases.end(); itBases++) {
+    std::cout << ' ' << *itBases;
+  }
+  return bases.size();
 }
-*/
+
+char Secuencia::getTipo()
+{
+  return tipo;
+}

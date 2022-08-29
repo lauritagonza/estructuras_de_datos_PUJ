@@ -3,6 +3,7 @@
 
 #include <string>
 #include <list>
+#include <set>
 
 class Secuencia
 {
@@ -12,6 +13,8 @@ class Secuencia
         std::string ObtenerDescripcion();
         void FijarDescripcion(std::string descripcion_secuencia);
         void AgregarLinea(std::string linea_secuencia);
+        int EncontrarBases();
+        char getTipo();
 
         // std::vector<Base> getSecuencia(); 
         // void setSecuencia(std::vector<Base> secuencia);
@@ -22,7 +25,9 @@ class Secuencia
 
     protected:
         std::string descripcion;
-        std::list<std::string> l_lineas; 
+        std::list<std::string> l_lineas;
+        std::set<char> bases;
+        char tipo;
 }; 
 
 #endif // _secuencia__H__

@@ -34,6 +34,7 @@ bool file_is_empty(ifstream& pFile);
 void cargar(string nombre_archivo, Genoma &genoma);
 vector<string> split (string str, char bases);  
 void conteo (Genoma &genoma); 
+void listar_secuencias (Genoma &genoma);
 
 int numFrec; 
 vector< list<char> > secuencias; 
@@ -96,14 +97,10 @@ int main()
                 break;
         
             case 4:
-                itsec = secuencias.begin();
-                for (int i = 1; i <= numFrec; i++){
-                    itlist = itsec->begin();
-                    for ( ; itlist != itsec->end(); itlist++)
-                    cout<<*itlist; 
-                }
                 cout << "Comando ingresado correctamente" << endl;
-                cout<<"La lista de secuecias es:"; 
+                cout<<"La lista de secuecias es:" << endl; 
+
+                listar_secuencias(genoma);
                 
                 cout<<"Ingresa comando deseado"<<endl; 
                 break;
@@ -271,6 +268,8 @@ void cargar(string nombre_archivo, Genoma &genoma)
         return;
     }
 
+    genoma.EliminarSecuencias();
+
     // Leer archivo
     while(getline (archivo_lectura, myText))
     {
@@ -280,7 +279,7 @@ void cargar(string nombre_archivo, Genoma &genoma)
             pos = myText.find(">");
             descripcion_secuencia = myText.substr(pos+1);
 
-            cout << ">>>" << descripcion_secuencia << endl;
+            // cout << ">>>" << descripcion_secuencia << endl;
 
             n_secuencias++;
 
@@ -288,7 +287,7 @@ void cargar(string nombre_archivo, Genoma &genoma)
         else
         {
             // Agregar linea de secuencia
-            cout << myText << endl << endl;
+            // cout << myText << endl << endl;
             linea_secuencia = myText;
             genoma.AgregarLineaSecuencia(descripcion_secuencia, linea_secuencia);
         }
@@ -311,10 +310,12 @@ void conteo (Genoma &genoma)
 }  
 
 
-void listar_secuencias (char byte)
+void listar_secuencias (Genoma &genoma)
 {
-    if(byte != '>')
-    secuencias[numFrec-1].push_back(byte); 
+    if (genoma.ObtenerNSecuencias() == 0) 
+        cout << endl << "No hay secuencias cargadas en memoria" << endl;
+    else
+        genoma.ListarSecuencias();
 }
 
 
