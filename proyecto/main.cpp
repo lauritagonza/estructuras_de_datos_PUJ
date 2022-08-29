@@ -17,6 +17,7 @@
 #include <vector>
 #include <list>
 #include <fstream>
+#include "genoma.h"
 
 using namespace std;
 using std::stoi;
@@ -244,7 +245,11 @@ bool file_is_empty(ifstream& pFile)
 //Función comando cargar 
 void cargar(string nombre_archivo)
 {
-    string myText;
+    Genoma genoma;
+
+    int n_secuencias = 0;
+    int pos;
+    string myText, linea_secuencia, descripcion_secuencia;
 
     cout << endl << "cargando archivo:  " << nombre_archivo << endl;
     ifstream archivo_lectura(nombre_archivo);
@@ -265,11 +270,26 @@ void cargar(string nombre_archivo)
     while(getline (archivo_lectura, myText))
     {
         if (myText[0] == '>'){
-            cout << myText[0];
+
+            // obtener descripcion_secuencia
+            pos = myText.find(">");
+            descripcion_secuencia = myText.substr(pos+1);
+
+            cout << ">>>" << descripcion_secuencia << endl;
+
+            n_secuencias++;
+
         }
-        cout << myText << endl << endl;
+        else
+        {
+            // Agregar linea de secuencia
+            cout << myText << endl << endl;
+            linea_secuencia = myText;
+            genoma.AgregarLineaSecuencia(descripcion_secuencia, linea_secuencia);
+        }
     }
     archivo_lectura.close();
+    cout << endl << "Se han cargado " << n_secuencias << " secuencias" << endl;
 }
 
 
