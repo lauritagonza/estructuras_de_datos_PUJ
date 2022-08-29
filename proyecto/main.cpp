@@ -8,6 +8,11 @@
     Laura Gonzales
     Victoria Chavarro
     Emma Gachancipa
+
+    Compilar:
+        g++ -std=c++11 main.cpp genoma.cxx secuencia.cxx -o main
+    Ejecutar:
+        ./main
 */
 
 #include <clocale>
@@ -26,15 +31,17 @@ using std::stoi;
 void ayuda(); 
 int cmd(string comando);
 bool file_is_empty(ifstream& pFile);
-void cargar(string nombre_archivo); 
+void cargar(string nombre_archivo, Genoma &genoma);
 vector<string> split (string str, char bases);  
-void conteo (char byte); 
+void conteo (Genoma &genoma); 
 
 int numFrec; 
 vector< list<char> > secuencias; 
 
 int main()
 {
+    Genoma genoma;
+
     // genoma infoGenetica;  
     bool salida = true;
     int comand;
@@ -76,7 +83,7 @@ int main()
                     cout <<"\nNo ha ingresado el nombre del archivo, \nvuelva a escribir comando"<<endl;
                 else if (palabras.size() == 2) {
                     nombre_archivo = palabras[1];
-                    cargar(nombre_archivo);
+                    cargar(nombre_archivo, genoma);
                 cout<<endl<<"Ingresa comando deseado"<<endl; 
                 } else
                     cout << "\n Los parametros no cumplen con los requisitos del comando";
@@ -84,7 +91,7 @@ int main()
 
             case 3:
                 cout << "Comando ingresado correctamente" << endl;
-                cout<<"El numero de secuencias que exiten en el archivo es:"<<numFrec<<endl;
+                conteo(genoma);
                 cout<<endl<<"Ingresa comando deseado"<<endl; 
                 break;
         
@@ -119,7 +126,7 @@ int main()
                     cout <<"\nNo ha ingresado el nombre del archivo, \nvuelva a escribir comando"<<endl;
                 else if (palabras.size() == 2) {
                     nombre_archivo = palabras[1];
-                    cargar(nombre_archivo); 
+                    cargar(nombre_archivo, genoma); 
                 cout << "  Comando ingresado correctamente"<< endl;
                     cout<<"Ingresa comando deseado"<<endl; 
                 } else
@@ -131,7 +138,7 @@ int main()
                     cout <<"\nNo ha ingresado el nombre del archivo, \nvuelva a escribir comando"<<endl;
                 else if (palabras.size() == 2) {
                     nombre_archivo = palabras[1];
-                    cargar(nombre_archivo);
+                    cargar(nombre_archivo, genoma); 
                 cout << "  Comando ingresado correctamente"<< endl;
                 } else
                     cout << "\n Los parametros no cumplen con los requisitos del comando";
@@ -142,7 +149,7 @@ int main()
                     cout <<"\nNo ha ingresado el nombre del archivo, \nvuelva a escribir comando"<<endl;
                 else if (palabras.size() == 2) {
                     nombre_archivo = palabras[1];
-                    cargar(nombre_archivo);
+                    cargar(nombre_archivo, genoma); 
                 cout << "  Comando ingresado correctamente"<< endl;
                 } else
                     cout << "\n Los parametros no cumplen con los requisitos del comando";
@@ -243,10 +250,8 @@ bool file_is_empty(ifstream& pFile)
 }
 
 //Función comando cargar 
-void cargar(string nombre_archivo)
+void cargar(string nombre_archivo, Genoma &genoma)
 {
-    Genoma genoma;
-
     int n_secuencias = 0;
     int pos;
     string myText, linea_secuencia, descripcion_secuencia;
@@ -293,10 +298,16 @@ void cargar(string nombre_archivo)
 }
 
 
-void conteo (char byte) 
-{ 
-    if(byte == '>')
-        numFrec++; 
+void conteo (Genoma &genoma) 
+{
+    int n_secuencias;
+
+    n_secuencias = genoma.ObtenerNSecuencias();
+
+    if (n_secuencias == 0) 
+        cout << endl << "No hay secuencias cargadas en memoria" << endl;
+    else
+        cout << endl << n_secuencias << " secuencias en memoria" << endl;
 }  
 
 

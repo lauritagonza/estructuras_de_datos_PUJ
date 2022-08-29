@@ -10,10 +10,10 @@ Genoma::Genoma(){
   n_secuencias=0;
 }
 
-// void Genoma::setNombre(std::string nombre)
-// {
-//   this->nombre = nombre; 
-// }
+void Genoma::setNombre(std::string nombre)
+{
+  this->nombre = nombre; 
+}
   
 // void Genoma::setTipo(char tipo) 
 // {
@@ -33,13 +33,19 @@ void Genoma::AgregarLineaSecuencia(std::string descripcion_secuencia, std::strin
   }
   
   if (itNewSec == l_secuencias.end( ) ) {
-      Secuencia secuencia;
-      secuencia.FijarDescripcion(descripcion_secuencia);
-      secuencia.AgregarLinea(linea_secuencia);
-      l_secuencias.push_back(secuencia);
-
-      n_secuencias++;
+    Secuencia secuencia;
+    secuencia.FijarDescripcion(descripcion_secuencia);
+    secuencia.AgregarLinea(linea_secuencia);
+    l_secuencias.push_back(secuencia);
+    this->n_secuencias++;
   }
+
+  std::cout << ">>>" << n_secuencias << std::endl;
+}
+
+int Genoma::ObtenerNSecuencias()
+{
+  return (n_secuencias);
 }
 
 /*

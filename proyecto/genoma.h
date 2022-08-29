@@ -9,11 +9,13 @@ class Genoma {
     public:
         Genoma();
         void AgregarLineaSecuencia(std::string descripcion_secuencia, std::string l_secuencia);
+        int ObtenerNSecuencias();
+        void setNombre(std::string nom); 
+
         
         // void setlSecuencias(std::vector<Secuencia> secuencias);
         // void agregarlSecuencias();
         // void setTipo(char tipo);
-        // void setNombre(std::string nom); 
         // void enmascararSecuencia(); 
         // void esSubsecuencia(); 
 
@@ -21,7 +23,7 @@ class Genoma {
         std::string nombre;
         std::list <Secuencia> l_secuencias;
         char tipo;
-        int n_secuencias;
+        unsigned long n_secuencias;
 };
 
 #endif // _genoma__H__
