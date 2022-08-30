@@ -16,6 +16,7 @@ class Secuencia
         int EncontrarBases();
         char getTipo();
         void Histograma();
+        std::list<std::string> ObtenerLLineas();
 
         // std::vector<Base> getSecuencia(); 
         // void setSecuencia(std::vector<Base> secuencia);

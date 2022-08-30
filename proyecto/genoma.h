@@ -14,6 +14,7 @@ class Genoma {
         void ListarSecuencias();
         void EliminarSecuencias();
         void HistogramaSecuencia(std::string descripcion_secuencia);
+        void GuardarArchivo(std::string nombre_archivo);
         
         // void setlSecuencias(std::vector<Secuencia> secuencias);
         // void agregarlSecuencias();

@@ -2,6 +2,7 @@
 #include <vector>
 #include <list>
 #include <iostream>
+#include <fstream>
 
 // constructor
 Genoma::Genoma(){
@@ -80,7 +81,7 @@ void Genoma::HistogramaSecuencia(std::string descripcion_secuencia)
   bool encontrada = false;
   std::list<Secuencia>::iterator itSec;
 
-  for (itSec = l_secuencias.begin(); itSec != l_secuencias.end(); itSec++ )
+  for (itSec = l_secuencias.begin(); itSec != l_secuencias.end(); itSec++)
   {
     if (itSec->ObtenerDescripcion() == descripcion_secuencia)
     {
@@ -92,3 +93,30 @@ void Genoma::HistogramaSecuencia(std::string descripcion_secuencia)
   if (!encontrada)
     std::cout << std::endl << "Secuencia invalida." << std::endl;
 }
+
+void Genoma::GuardarArchivo(std::string nombre_archivo)
+{
+  std::list<std::string> l_lineas;
+
+  std::list<Secuencia>::iterator itSec;
+  std::list<std::string>::iterator itLineas;
+
+  std::ofstream MyFile(nombre_archivo);
+
+  for (itSec = l_secuencias.begin(); itSec != l_secuencias.end(); itSec++)
+  {
+    // Escribir descripcion
+    MyFile << ">" << itSec->ObtenerDescripcion() << "\n";
+    
+    l_lineas = itSec->ObtenerLLineas();
+
+    for (itLineas = l_lineas.begin(); itLineas != l_lineas.end(); itLineas++)
+    {
+      // Escribir linea de secuencia
+      MyFile << *itLineas << "\n";
+    }
+  }
+
+  MyFile.close();
+}
+

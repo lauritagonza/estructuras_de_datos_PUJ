@@ -36,6 +36,7 @@ vector<string> split (string str, char bases);
 void conteo (Genoma &genoma); 
 void listar_secuencias (Genoma &genoma);
 void histograma(string descripcion_secuencia, Genoma &genoma);
+void guardar(string nombre_archivo, Genoma &genoma);
 
 int numFrec; 
 vector< list<char> > secuencias; 
@@ -135,7 +136,7 @@ int main()
                     cout <<"\nNo ha ingresado el nombre del archivo, \nvuelva a escribir comando"<<endl;
                 else if (palabras.size() == 2) {
                     nombre_archivo = palabras[1];
-                    cargar(nombre_archivo, genoma); 
+                    guardar(nombre_archivo, genoma); 
                 cout << "  Comando ingresado correctamente"<< endl;
                     cout<<"Ingresa comando deseado"<<endl; 
                 } else
@@ -322,7 +323,7 @@ void conteo (Genoma &genoma)
 }  
 
 
-void listar_secuencias (Genoma &genoma)
+void listar_secuencias(Genoma &genoma)
 {
     if (genoma.ObtenerNSecuencias() == 0) 
         cout << endl << "No hay secuencias cargadas en memoria" << endl;
@@ -335,11 +336,7 @@ void histograma(string descripcion_secuencia, Genoma &genoma)
     genoma.HistogramaSecuencia(descripcion_secuencia);
 }
 
-void guardar(string nombre_archivo){
-  
-    ofstream escritura(nombre_archivo,ios::binary); 
-
-    char byte; 
-    escritura.write((char *) &byte, sizeof(char)); 
-    escritura.close();
+void guardar(string nombre_archivo, Genoma &genoma)
+{  
+    genoma.GuardarArchivo(nombre_archivo);
 }

@@ -107,3 +107,8 @@ void Secuencia::Histograma()
   }
   std::cout << std::endl;
 }
+
+std::list<std::string> Secuencia::ObtenerLLineas()
+{
+  return l_lineas;
+}
