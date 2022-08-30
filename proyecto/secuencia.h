@@ -15,6 +15,7 @@ class Secuencia
         void AgregarLinea(std::string linea_secuencia);
         int EncontrarBases();
         char getTipo();
+        void Histograma();
 
         // std::vector<Base> getSecuencia(); 
         // void setSecuencia(std::vector<Base> secuencia);

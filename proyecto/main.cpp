@@ -35,6 +35,7 @@ void cargar(string nombre_archivo, Genoma &genoma);
 vector<string> split (string str, char bases);  
 void conteo (Genoma &genoma); 
 void listar_secuencias (Genoma &genoma);
+void histograma(string descripcion_secuencia, Genoma &genoma);
 
 int numFrec; 
 vector< list<char> > secuencias; 
@@ -52,7 +53,7 @@ int main()
     list<char>::iterator itlist;
   
     vector<string> palabras;
-    string nombre_archivo;
+    string nombre_archivo, descripcion_secuencia;
 
     cout << "Ingresa comando deseado" << endl;
     cout << "Si no conoces los comandos ingresa: ayuda" << endl; 
@@ -85,7 +86,7 @@ int main()
                 else if (palabras.size() == 2) {
                     nombre_archivo = palabras[1];
                     cargar(nombre_archivo, genoma);
-                cout<<endl<<"Ingresa comando deseado"<<endl; 
+                    cout<<endl<<"Ingresa comando deseado"<<endl; 
                 } else
                     cout << "\n Los parametros no cumplen con los requisitos del comando";
                 break;
@@ -107,13 +108,24 @@ int main()
         
             case 5:
                 cout << "Comando ingresado correctamente" << endl;
-                cout<<"Ingresa comando deseado"<<endl; 
+
+                if (palabras.size() == 1)
+                    cout <<"\nNo ha ingresado la descripcion de la secuencia, \nvuelva a escribir comando"<<endl;
+                else if (palabras.size() == 2) {
+                    descripcion_secuencia = palabras[1];
+                    histograma(descripcion_secuencia, genoma);
+                    cout<<"Ingresa comando deseado"<<endl; 
+                }
+                else
+                    cout << "\n Los parametros no cumplen con los requisitos del comando";
                 break;
-                case 6:
+            
+            case 6:
                 cout << "Comando ingresado correctamente" << endl;
                 cout<<"Ingresa comando deseado"<<endl; 
                 break;
-                case 7:
+            
+            case 7:
                 cout << "Comando ingresado correctamente" << endl;
                 cout<<"Ingresa comando deseado"<<endl; 
                 break;
@@ -318,6 +330,10 @@ void listar_secuencias (Genoma &genoma)
         genoma.ListarSecuencias();
 }
 
+void histograma(string descripcion_secuencia, Genoma &genoma)
+{
+    genoma.HistogramaSecuencia(descripcion_secuencia);
+}
 
 void guardar(string nombre_archivo){
   

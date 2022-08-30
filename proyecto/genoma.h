@@ -13,7 +13,7 @@ class Genoma {
         void setNombre(std::string nom);
         void ListarSecuencias();
         void EliminarSecuencias();
-
+        void HistogramaSecuencia(std::string descripcion_secuencia);
         
         // void setlSecuencias(std::vector<Secuencia> secuencias);
         // void agregarlSecuencias();

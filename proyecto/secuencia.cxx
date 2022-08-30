@@ -30,7 +30,8 @@ int Secuencia::EncontrarBases()
 
   bases.clear();
 
-  for (itLineas = l_lineas.begin(); itLineas != l_lineas.end(); itLineas++) {
+  for (itLineas = l_lineas.begin(); itLineas != l_lineas.end(); itLineas++)
+  {
     linea = *itLineas;
     n = linea.length();
 
@@ -57,4 +58,52 @@ int Secuencia::EncontrarBases()
 char Secuencia::getTipo()
 {
   return tipo;
+}
+
+void Secuencia::Histograma()
+{
+  int n, i, count;
+  char base;
+  std::string linea;
+  std::list<std::string>::iterator itLineas;
+
+  // Encontrar bases únicas
+  bases.clear();
+
+  for (itLineas = l_lineas.begin(); itLineas != l_lineas.end(); itLineas++)
+  {
+    linea = *itLineas;
+    n = linea.length();
+
+    for (i = 0; i < n; i++) {
+
+      if (linea[i] == '-')
+        this->tipo = 'I';
+      
+      // std::cout << linea[i] << " ";
+      bases.insert(linea[i]);
+    }
+  }
+
+  // Encontrar frecuencia por base
+  std::set<char>::iterator itBases;
+
+  for (itBases = bases.begin(); itBases != bases.end(); itBases++) {
+    count = 0;
+    base = *itBases;
+
+    for (itLineas = l_lineas.begin(); itLineas != l_lineas.end(); itLineas++)
+    {
+      linea = *itLineas;
+      n = linea.length();
+
+      for (i = 0; i < n; i++) {
+        if (base == linea[i])
+          count++;
+      }
+    }
+
+    std::cout << std::endl << base << ": " << count;
+  }
+  std::cout << std::endl;
 }

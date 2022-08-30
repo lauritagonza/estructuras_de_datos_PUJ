@@ -70,6 +70,25 @@ void Genoma::ListarSecuencias()
   std::cout << std::endl;
 }
 
-void Genoma::EliminarSecuencias() {
+void Genoma::EliminarSecuencias()
+{
   l_secuencias.clear();
+}
+
+void Genoma::HistogramaSecuencia(std::string descripcion_secuencia)
+{
+  bool encontrada = false;
+  std::list<Secuencia>::iterator itSec;
+
+  for (itSec = l_secuencias.begin(); itSec != l_secuencias.end(); itSec++ )
+  {
+    if (itSec->ObtenerDescripcion() == descripcion_secuencia)
+    {
+      itSec->Histograma();
+      encontrada = true;
+    }
+  }
+
+  if (!encontrada)
+    std::cout << std::endl << "Secuencia invalida." << std::endl;
 }
