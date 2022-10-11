@@ -1,5 +1,6 @@
 #include "ArbolQuad.h"
 #include <iostream>
+#include <fstream>
 using namespace std; 
 
 ArbolQuad::ArbolQuad() {
@@ -48,30 +49,30 @@ bool ArbolQuad::insertar(int val) {
   {
     NodoQuad *parent_node = this->raiz;
 
-    while (!res)
-    {
-      res = parent_node->insert(val, parent_node);
-
-      if (res == true)
-        return res;
-
-    }
+    return parent_node->insert(val, parent_node);
   }
   
   return res;
 }
 
-void print_mtx(int **matrix, int img_size)
+void save_mtx(int **matrix, int img_size, string nombre_imagen)
 {
-  for (int i = 0; i < img_size; i++)
+  ofstream myfile (nombre_imagen);
+
+  if (myfile.is_open())
   {
-    for (int j = 0; j < img_size; j++)
+    myfile << "P1" << endl;
+    myfile << img_size << " " << img_size << endl;
+    
+    for (int i = 0; i < img_size; i++)
     {
-      cout << matrix[i][j] << " ";
+      for (int j = 0; j < img_size; j++)
+      {
+        myfile << matrix[i][j];
+      }
+      myfile << endl;
     }
-    cout << endl;
   }
-  cout << endl;
 }
 
 void fill_mtx(int **matrix, int x, int y, int act_size, int val)
@@ -102,10 +103,7 @@ void color(NodoQuad *node, int full_size, int img_size, int x, int y, int **matr
     {
         // cout << node->obtenerDato() << " " << img_size << endl << endl;
 
-        if (node->obtenerDato() != 2)
-        {
-          fill_mtx(matrix, x, y, img_size, node->obtenerDato());
-        }
+        fill_mtx(matrix, x, y, img_size, node->obtenerDato());
 
         img_size /= 2;
         color(node->obtenerHijoSupIzq(), full_size, img_size, x, y, matrix);
@@ -122,7 +120,7 @@ void ArbolQuad::toImage(string img_file, int img_size)
   fill_mtx(matrix, 0, 0, img_size, 2);
 
   color(this->raiz, img_size, img_size, 0, 0, matrix);
-  print_mtx(matrix, img_size);
+  save_mtx(matrix, img_size, img_file);
 }
 
 // eof - ArbolAVL.hxx

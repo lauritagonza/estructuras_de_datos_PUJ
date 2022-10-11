@@ -20,18 +20,23 @@
 #include "ArbolQuad.h"
 using namespace std;
 
-void cargar(string nombre_archivo, ArbolQuad arbolito); 
+void cargar(string nombre_archivo, string nombre_imagen, ArbolQuad arbolito); 
 
 int main() {
   string nombre_archivo;
   cout << "Ingresa el nombre del archivo que desea leer" << endl;
   cin >> nombre_archivo;
+
+  string nombre_imagen;
+  cout << "Ingresa el nombre del archivo donde se va a guardar la imagen (.pbm)" << endl;
+  cin >> nombre_imagen;
+
   ArbolQuad arbolito;
-  cargar(nombre_archivo, arbolito);
+  cargar(nombre_archivo, nombre_imagen, arbolito);
 }
 
-void cargar(string nombre_archivo, ArbolQuad arbolito){
-
+void cargar(string nombre_archivo, string nombre_imagen, ArbolQuad arbolito)
+{
   cout << endl << "Cargando archivo:  " << nombre_archivo << endl;
   ifstream archivo_lectura(nombre_archivo);
 
@@ -75,5 +80,5 @@ void cargar(string nombre_archivo, ArbolQuad arbolito){
     c = line[i];
     arbolito.insertar(stoi(c));
   }
-  arbolito.toImage("img.png", width);
+  arbolito.toImage(nombre_imagen, width);
 }
