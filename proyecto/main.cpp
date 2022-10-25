@@ -443,7 +443,7 @@ void codificar(string nombre_archivo, Genoma &genoma)
         {
             sij = nombre[j];
             archivo_escritura.write((char *) &sij, sizeof(char));
-            cout << "s" << i << (j+1) << ":" << sij << endl;
+            cout << "s[" << i  << "][" << (j+1) << "]:" << sij << endl;
         }
     }
 
@@ -498,11 +498,12 @@ void decodificar(string nombre_archivo, Genoma &genoma)
             for (int j = 1; j < (li+1) ; j++)
             {
                 archivo_lectura.read((char*)&sij, sizeof(char));
-                cout << "s" << i << j << ":" << sij << endl;
+                cout << "s[" << i  << "][" << j << "]:" << sij << endl;
             }
         }
 
         archivo_lectura.close();
+        return;
     }
 }
 
