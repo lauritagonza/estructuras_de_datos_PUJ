@@ -21,6 +21,7 @@
 #include <string>
 #include <vector>
 #include <list>
+#include <map>
 #include <fstream>
 #include "genoma.h"
 
@@ -36,8 +37,14 @@ vector<string> split (string str, char bases);
 void conteo (Genoma &genoma); 
 void listar_secuencias (Genoma &genoma);
 void histograma(string descripcion_secuencia, Genoma &genoma);
+void Subsecuencia(string secUsuario, Genoma &genoma); 
+void enmascarar(string secUsuario, Genoma &genoma, string nombre_archivo); 
 void guardar(string nombre_archivo, Genoma &genoma);
+void tamañoNombre(int n,Genoma &genoma ); 
+void codificar(string nombre_archivo, Genoma &genoma);
+void decodificar(string nombre_archivo, Genoma &genoma);
 
+  
 int numFrec; 
 vector< list<char> > secuencias; 
 
@@ -49,7 +56,7 @@ int main()
     bool salida = true;
     int comand;
 
-    string comando, linea_comando;
+    string comando, linea_comando, secUsuario; 
     vector<list<char> >::iterator itsec;
     list<char>::iterator itlist;
   
@@ -73,12 +80,14 @@ int main()
                 cout << "Ha salido del programa" << endl;
                 break;
         
+            // AYUDA
             case 1:
                 cout << "Comando ingresado correctamente" << endl;
                 ayuda();
                 cout<<"Ingresa comando deseado"<<endl; 
                 break;
         
+            // CARGAR
             case 2:
                 cout << "  Comando ingresado correctamente"<< endl;
                 numFrec=0; 
@@ -87,17 +96,20 @@ int main()
                 else if (palabras.size() == 2) {
                     nombre_archivo = palabras[1];
                     cargar(nombre_archivo, genoma);
+                    tamañoNombre(1, genoma);
                     cout<<endl<<"Ingresa comando deseado"<<endl; 
                 } else
                     cout << "\n Los parametros no cumplen con los requisitos del comando";
                 break;
 
+            // CONTEO
             case 3:
                 cout << "Comando ingresado correctamente" << endl;
                 conteo(genoma);
                 cout<<endl<<"Ingresa comando deseado"<<endl; 
                 break;
         
+            // LISTAR SECUENCIAS
             case 4:
                 cout << "Comando ingresado correctamente" << endl;
                 cout<<"La lista de secuecias es:" << endl; 
@@ -107,6 +119,7 @@ int main()
                 cout<<"Ingresa comando deseado"<<endl; 
                 break;
         
+            // HISTOGRAMA
             case 5:
                 cout << "Comando ingresado correctamente" << endl;
 
@@ -121,16 +134,33 @@ int main()
                     cout << "\n Los parametros no cumplen con los requisitos del comando";
                 break;
             
-            case 6:
+            // ES SUBSECUENCIA
+            case 6: 
                 cout << "Comando ingresado correctamente" << endl;
-                cout<<"Ingresa comando deseado"<<endl; 
+                  if (palabras.size() == 1)
+                    cout <<"\nNo ha ingresado la secuencia"<<endl;
+                else if (palabras.size() == 2) {
+                    secUsuario = palabras[1]; 
+                     Subsecuencia(secUsuario, genoma); 
+                cout<<endl<<"Ingresa comando deseado"<<endl; 
+                } else
+                    cout << "\n Los parametros no cumplen con los requisitos del comando";
+        
                 break;
             
+            // ENMASCARAR
             case 7:
                 cout << "Comando ingresado correctamente" << endl;
-                cout<<"Ingresa comando deseado"<<endl; 
-                break;
+                  if (palabras.size() == 1)
+                    cout <<"\nNo ha ingresado la secuencia"<<endl;
+                else if (palabras.size() == 2) {
+                    secUsuario = palabras[1]; 
+                     enmascarar(secUsuario, genoma, nombre_archivo); 
+                cout<<endl<<"Ingresa comando deseado"<<endl; 
+                } else
+                    cout << "\n Los parametros no cumplen con los requisitos del comando";
 
+            // GUARDAR
             case 8:
                 if (palabras.size() == 1)
                     cout <<"\nNo ha ingresado el nombre del archivo, \nvuelva a escribir comando"<<endl;
@@ -143,28 +173,31 @@ int main()
                     cout << "\n Los parametros no cumplen con los requisitos del comando";
                 break;
 
+            // CODIFICAR
             case 9:
                 if (palabras.size() == 1)
                     cout <<"\nNo ha ingresado el nombre del archivo, \nvuelva a escribir comando"<<endl;
                 else if (palabras.size() == 2) {
+                    cout << endl << "  Comando ingresado correctamente"<< endl;
                     nombre_archivo = palabras[1];
-                    cargar(nombre_archivo, genoma); 
-                cout << "  Comando ingresado correctamente"<< endl;
+                    codificar(nombre_archivo, genoma); 
                 } else
                     cout << "\n Los parametros no cumplen con los requisitos del comando";
                 break;
 
+            // DECODIFICAR
             case 10:
                 if (palabras.size() == 1)
                     cout <<"\nNo ha ingresado el nombre del archivo, \nvuelva a escribir comando"<<endl;
                 else if (palabras.size() == 2) {
+                    cout << "  Comando ingresado correctamente"<< endl;
                     nombre_archivo = palabras[1];
-                    cargar(nombre_archivo, genoma); 
-                cout << "  Comando ingresado correctamente"<< endl;
+                    decodificar(nombre_archivo, genoma); 
                 } else
                     cout << "\n Los parametros no cumplen con los requisitos del comando";
                 break;
 
+            // RUTA MAS CORTA
             case 11:
                 cout << "Comando ingresado correctamente" << endl;
                 break;
@@ -331,12 +364,122 @@ void listar_secuencias(Genoma &genoma)
         genoma.ListarSecuencias();
 }
 
+void Subsecuencia(string secUsuario, Genoma &genoma){
+  int nrepeticiones; 
+  nrepeticiones=genoma.esSubsecuencia(secUsuario);
+  if(nrepeticiones==0)
+    cout<<"La secuencia dada no existe"<<endl; 
+  else
+  cout<<"El numero de veces que se repite la secuencia: "<<secUsuario<<" es: "<<nrepeticiones;
+}
+
 void histograma(string descripcion_secuencia, Genoma &genoma)
 {
     genoma.HistogramaSecuencia(descripcion_secuencia);
 }
 
+void enmascarar(string secUsuario, Genoma &genoma, string nombre_archivo){
+  genoma.enmascararSecuencia(secUsuario);
+   genoma.GuardarArchivo(nombre_archivo);
+}
+
 void guardar(string nombre_archivo, Genoma &genoma)
 {  
     genoma.GuardarArchivo(nombre_archivo);
+}
+
+//Función comando codificar 
+void codificar(string nombre_archivo, Genoma &genoma)
+{
+    ofstream archivo_escritura(nombre_archivo, ios::out | ios::binary);
+
+    if (!archivo_escritura) {
+        cout << "No se pueden guardar las secuencias cargadas en " << nombre_archivo << endl;
+        return ;
+    }
+
+    short int n;
+    std::map<char, long int> hist_total;
+    std::map<char, long int>::iterator it;
+
+    hist_total = genoma.HistogramaTotal();
+    n = hist_total.size();
+    cout << "n: " << n << endl;
+    archivo_escritura.write((char *) &n, sizeof(short int));
+
+    int i = 0;
+    for (it=hist_total.begin(); it!=hist_total.end(); it++)
+    {
+        i++;
+        cout << "c" << i << ": " << it->first << " | f" << i << ": " << it->second << endl;
+    
+        archivo_escritura.write((char *) &(it->first), sizeof(char));
+        archivo_escritura.write((char *) &(it->second), sizeof(long int));
+    }
+
+    int ns;
+
+    short int li;
+    char sij;
+
+    long int wi;
+    short int xi = 0;
+
+    int binary_codei;
+}
+
+//Función comando decodificar 
+void decodificar(string nombre_archivo, Genoma &genoma)
+{
+    short int n, li;
+    char ci, sij;
+    long int fi;
+    int ns;
+    cout << endl << "Decodificando archivo:  " << nombre_archivo << endl;
+    
+    ifstream archivo_lectura(nombre_archivo, ios::in | ios::binary );
+
+    if (!archivo_lectura) {
+        cout << endl << "No se pueden cargar las secuencias en: " << nombre_archivo << endl;
+        return;
+    }
+
+    // Verificar si el archivo esta vacio
+    if (file_is_empty(archivo_lectura)){
+        cout << endl << nombre_archivo << ": Esta vacio" << endl;
+        return;
+    }
+
+    while (!archivo_lectura.eof()) {
+        archivo_lectura.read((char*)&n, sizeof(short int));
+        cout << "n: " << n << endl;
+
+        for (int i = 1; i <= n; i++)
+        {
+            archivo_lectura.read((char*)&ci, sizeof(char));
+            archivo_lectura.read((char*)&fi, sizeof(long int));
+            cout << "c" << i << ": " << ci << " | f" << i << ": " << fi << endl;
+        }
+        
+        archivo_lectura.read((char*)&ns, sizeof(int));
+        cout << "ns: " << ns << endl;
+
+        for (int i = 1; i <= ns; i++) {
+            archivo_lectura.read((char*)&li, sizeof(short int));
+            cout << "l" << i << ":" << li << endl;
+
+            for (int j = 1; j < (li+1) ; j++)
+            {
+                archivo_lectura.read((char*)&sij, sizeof(char));
+                cout << "s" << i << j << ":" << sij << endl;
+            }
+        }
+
+        archivo_lectura.close();
+    }
+}
+
+void tamañoNombre(int n, Genoma &genoma ){
+  int tam=  genoma.nombreSecuencia();
+  cout<<tam<<endl;
 }

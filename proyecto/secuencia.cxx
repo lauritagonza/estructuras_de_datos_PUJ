@@ -1,5 +1,6 @@
 #include "secuencia.h"
 #include <iostream>
+#include <map>
 
 // constructor
 Secuencia::Secuencia( ){
@@ -22,7 +23,7 @@ void Secuencia::AgregarLinea(std::string linea_secuencia){
   l_lineas.push_back(linea_secuencia);
 }
 
-int Secuencia::EncontrarBases()
+int Secuencia::EncontrarBases(bool v)
 {
   int n;
   std::string linea;
@@ -45,12 +46,15 @@ int Secuencia::EncontrarBases()
     }
   }
 
-  std::cout << std::endl <<"Bases encontradas: " << std::endl; 
+  if (v)
+    std::cout << std::endl <<"Bases encontradas: " << std::endl; 
 
   std::set<char>::iterator itBases;
 
-  for (itBases = bases.begin(); itBases != bases.end(); itBases++) {
-    std::cout << ' ' << *itBases;
+  if (v) {
+    for (itBases = bases.begin(); itBases != bases.end(); itBases++) {
+      std::cout << ' ' << *itBases;
+    }
   }
   return bases.size();
 }
@@ -60,8 +64,9 @@ char Secuencia::getTipo()
   return tipo;
 }
 
-void Secuencia::Histograma()
+std::map<char, long int> Secuencia::Histograma(bool v)
 {
+  std::map<char, long int> dict_hist;
   int n, i, count;
   char base;
   std::string linea;
@@ -103,12 +108,46 @@ void Secuencia::Histograma()
       }
     }
 
-    std::cout << std::endl << base << ": " << count;
+    dict_hist[base] = count;
+    
+    if (v)
+      std::cout << std::endl << base << ": " << count;
   }
-  std::cout << std::endl;
+  if (v)
+    std::cout << std::endl;
+
+  return dict_hist;
 }
 
 std::list<std::string> Secuencia::ObtenerLLineas()
 {
   return l_lineas;
 }
+
+
+
+/*
+std::list<std::string>Secuencia::enmascararSec(std::string secUsuario){
+  std::list<std::string>::iterator itLineas; 
+  std::string nuevo; 
+      int n=0; 
+     for (itLineas = l_lineas.begin(); itLineas != l_lineas.end(); itLineas++)
+    {
+      nuevo=*itLineas;
+      n++; 
+      bool found = nuevo.find(secUsuario) != std::string::npos;
+    if(found){
+      char* cadenaNuevo=&nuevo[0]; 
+      //cadenaNuevo=stringtovector(*itLineas);
+      for(int i=0; i<secUsuario.size(); i++){
+        std::cout<<n+i; 
+        cadenaNuevo[n+i]='X';
+          }
+      std::string nuevaLinea(cadenaNuevo);
+      std::cout<<nuevaLinea; 
+        l_lineas.push_back(nuevaLinea); 
+      return l_lineas; 
+    }
+}
+}
+*/

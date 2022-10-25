@@ -1,0 +1,147 @@
+Template nodo:
+
+template< class T >
+class Nodo {
+  protected:
+    T dato;
+    Nodo<T> *hijoIzq;
+    Nodo<T> *hijoDer;
+    int altura;
+  
+  public:
+    //CONSTRUCTORES
+    Nodo();
+    Nodo(T& val);
+    Nodo(T& val, Nodo<T> *izq, Nodo<T> *der);
+    //DESTRUCTOR
+    ~Nodo();
+
+    //GETTERS Y SETTERS
+    bool esHoja();
+    T& obtenerDato();
+    Nodo<T>* obtenerHijoIzq();
+    Nodo<T>* obtenerHijoDer();
+    int obtenerAltura();
+    void fijarDato(T& val);
+    void fijarHijoIzq(Nodo<T> *izq);
+    void fijarHijoDer(Nodo<T> *der);
+    void fijarAltura(int& h);
+  
+    //MÉTODOS ARBOL
+    void preOrden();
+    void inOrden();
+    void inordenEnLista(std::list<T>& lista);
+    void posOrden();
+    void nivelOrden();
+    bool buscar(T& val);
+    bool insertar(T& val, Nodo<T> **nraiz);
+    bool eliminar(T& val, Nodo<T> **nraiz);
+    T& minimo();
+    T& maximo();
+    int tamano();
+    void actualizarAlturas(); 
+    Nodo<T>* balanceArbol ();
+
+private:
+ Nodo<T>* rotDerecha();
+    Nodo<T>* rotIzquierda();
+    Nodo<T>* rotIzquierdaDerecha();
+    Nodo<T>* rotDerechaIzquierda();
+
+};
+
+
+TEMPLATE ARBOL AVL:
+template <class T> class ArbolAVL {
+protected:
+  Nodo<T> *raiz;
+
+public:
+  // CONSTRUCTORES
+  ArbolAVL();
+  ArbolAVL(T &val);
+  // DESTRUCTOR
+  ~ArbolAVL();
+  // MANIPULADORES
+  bool esVacio();
+  // T& datoRaiz();
+  void fijarRaiz(Nodo<T> *n_raiz);
+  T &obtenerRaiz();
+  T &obtenerDato(int n);
+  T &obtenerHijoIzqRaiz();
+
+  // METODOS ARBOL
+  void preOrden();
+  void inOrden();
+  void inordenEnLista(std::list<T> &lista);
+  void posOrden();
+  void nivelOrden();
+  bool buscar(T &val);
+  bool insert(T &val);
+  bool erase(T &val);
+  T &minimo();
+  T &maximo();
+  int tamano();
+  int altura();
+};
+
+#include "ArbolAVL.hxx"
+
+
+TEMPLATE NODO QUAD:
+
+
+class NodoQuad
+{
+    protected:
+        int dato;
+        NodoQuad* hijoSupIzq; // (0, 0)
+        NodoQuad* hijoSupDer; // (0, 1)
+        NodoQuad* hijoInfDer; // (1, 1)
+        NodoQuad* hijoInfIzq; // (1, 0)
+    public:
+        NodoQuad();
+        NodoQuad(int val);
+        ~NodoQuad();
+        int obtenerDato();
+        void fijarDato(int val);
+        NodoQuad* obtenerHijoSupIzq();
+        NodoQuad* obtenerHijoSupDer();
+        NodoQuad* obtenerHijoInfDer();
+        NodoQuad* obtenerHijoInfIzq();
+        void fijarHijoSupIzq(NodoQuad* sizq);
+        void fijarHijoSupDer(NodoQuad* sder);
+        void fijarHijoInfDer(NodoQuad* ider);
+        void fijarHijoInfIzq(NodoQuad* iizq);
+        bool insert(int val, NodoQuad* nodo);
+}; 
+
+#include "NodoQuad.hxx"
+
+
+
+TEMPLATE ARBL QUAD
+class ArbolQuad
+{
+    protected:
+        NodoQuad* raiz;
+    public:
+        ArbolQuad();
+        ArbolQuad(int val);
+        //~ArbolQuad();
+        int datoRaiz();
+        NodoQuad* obtenerRaiz();
+        void fijarRaiz(NodoQuad* n_raiz);
+        bool esVacio();
+        bool insertar(int val);
+        void preOrden();
+        void inOrden(NodoQuad *node, int img_size, int x, int y);
+        void posOrden();
+        void nivelOrden();
+        void toImage(string img_file, int img_size);
+}; 
+
+#include "ArbolQuad.hxx"
+
+
+#include "Nodo.hxx"

@@ -4,7 +4,6 @@
 #include <string>
 #include <list>
 #include <set>
-#include <map>
 
 class Secuencia
 {
@@ -14,9 +13,9 @@ class Secuencia
         std::string ObtenerDescripcion();
         void FijarDescripcion(std::string descripcion_secuencia);
         void AgregarLinea(std::string linea_secuencia);
-        int EncontrarBases(bool v);
+        int EncontrarBases();
         char getTipo();
-        std::map<char, long int> Histograma(bool v);
+        void Histograma();
         std::list<std::string>enmascararSec(std::string secUsuario);
         std::list<std::string> ObtenerLLineas();
 

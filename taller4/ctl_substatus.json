@@ -1,0 +1,160 @@
+[
+    {
+      "status_id": "6205cf9436aee7ccb42779ac5e69bd3f",
+      "hunty_substatus": "Registration",
+      "description": "Hizo el registro en la hunty app",
+      "hunty_substatus_id": "0f98b7f230f3c91292f0de4c99e263f2",
+      "mentor_tab_id": null,
+      "mentor_tab_name": null
+    },
+    {
+      "status_id": "6205cf9436aee7ccb42779ac5e69bd3f",
+      "hunty_substatus": "Application form",
+      "description": "Esta llenando el form de aplicacion ",
+      "hunty_substatus_id": "fb6a31c11343f5c9dfc87543585956c1",
+      "mentor_tab_id": null,
+      "mentor_tab_name": null
+    },
+    {
+      "status_id": "ebbc0d433ff3afa323495d2c0905af20",
+      "hunty_substatus": "Regret in Application",
+      "description": "Se arrepiente de aplicar ",
+      "hunty_substatus_id": "075bb12af16953e85118147c30b38329",
+      "mentor_tab_id": null,
+      "mentor_tab_name": null
+    },
+    {
+      "status_id": "4b2c66093b9d8573fc80c14e7c0287d7",
+      "hunty_substatus": "Application review",
+      "description": "Se esta validando su aplicacion ",
+      "hunty_substatus_id": "9fad6b4e8c723657a339ff6be632b6ac",
+      "mentor_tab_id": null,
+      "mentor_tab_name": null
+    },
+    {
+      "status_id": "4b2c66093b9d8573fc80c14e7c0287d7",
+      "hunty_substatus": "Lead CRM",
+      "description": "Usuario susceptible de contacto porque su perfil se ajusta al programa",
+      "hunty_substatus_id": "160db0c87ed1c424bbca09af31c27363",
+      "mentor_tab_id": null,
+      "mentor_tab_name": null
+    },
+    {
+      "status_id": "11ff9f68afb6b8b5b8eda218d7c83a65",
+      "hunty_substatus": "Contacted CRM",
+      "description": "Se contacto por medio del CRM ",
+      "hunty_substatus_id": "a7f35634e8877faa335f1c80a03f3232",
+      "mentor_tab_id": null,
+      "mentor_tab_name": null
+    },
+    {
+      "status_id": "11ff9f68afb6b8b5b8eda218d7c83a65",
+      "hunty_substatus": "Kickoff scheduled CRM",
+      "description": "Se agendo la sesion de Kickoff por medio del CRM ",
+      "hunty_substatus_id": "5aca5c1e3ee23d30e9e6b2dfecab63f0",
+      "mentor_tab_id": null,
+      "mentor_tab_name": null
+    },
+    {
+      "status_id": "11ff9f68afb6b8b5b8eda218d7c83a65",
+      "hunty_substatus": "Kickoff done",
+      "description": "Se hace el Kickoff",
+      "hunty_substatus_id": "939b8309c84c54eff686caee723de70f",
+      "mentor_tab_id": null,
+      "mentor_tab_name": null
+    },
+    {
+      "status_id": "d37b1f6c0512e2118cee17fea015b699",
+      "hunty_substatus": "Rejected by profile",
+      "description": "Se rechazo su aplicacion por su perfil ",
+      "hunty_substatus_id": "2f827e6f9ac8170f8a3af4d7f0dc58fe",
+      "mentor_tab_id": null,
+      "mentor_tab_name": null
+    },
+    {
+      "status_id": "d37b1f6c0512e2118cee17fea015b699",
+      "hunty_substatus": "Rejected with option of entry",
+      "description": "se rechazo pero queda en una lista de posible aprobacion ",
+      "hunty_substatus_id": "74b9e74572a8e791a5375a8fb306eea6",
+      "mentor_tab_id": null,
+      "mentor_tab_name": null
+    },
+    {
+      "status_id": "d37b1f6c0512e2118cee17fea015b699",
+      "hunty_substatus": "Rejected due to errors in form",
+      "description": "Tiene errores en su formulario y se le pide arreglarlos, o se le intento contactar y no contesto. ",
+      "hunty_substatus_id": "9837a1e98cfb059ec85bccb1a963969d",
+      "mentor_tab_id": null,
+      "mentor_tab_name": null
+    },
+    {
+      "status_id": "4d3d769b812b6faa6b76e1a8abaece2d",
+      "hunty_substatus": "Mentor assignment",
+      "description": "Asignación de un mentor al hunty",
+      "hunty_substatus_id": "9ea54694234d70d7861e36c06c758376",
+      "mentor_tab_id": 1.0,
+      "mentor_tab_name": "active"
+    },
+    {
+      "status_id": "4d3d769b812b6faa6b76e1a8abaece2d",
+      "hunty_substatus": "Bootcamp",
+      "description": "Se le asigno un mentor y entro al Bootcamp . pu",
+      "hunty_substatus_id": "cd9ebb2f72e2df6798ff82ab98c6cb2e",
+      "mentor_tab_id": 1.0,
+      "mentor_tab_name": "active"
+    },
+    {
+      "status_id": "4d3d769b812b6faa6b76e1a8abaece2d",
+      "hunty_substatus": "Ready To Apply",
+      "description": "Listo para aplicar a trabajos ",
+      "hunty_substatus_id": "c7ad19276b68c79ab25ebe5779a71349",
+      "mentor_tab_id": 1.0,
+      "mentor_tab_name": "active"
+    },
+    {
+      "status_id": "4d3d769b812b6faa6b76e1a8abaece2d",
+      "hunty_substatus": "Standby Bootcamp",
+      "description": "Congelacion Hunty \/ Mentor",
+      "hunty_substatus_id": "7ff38dd13e88caab55a198071a1ff511",
+      "mentor_tab_id": 2.0,
+      "mentor_tab_name": "stand_by"
+    },
+    {
+      "status_id": "57d7327bf3c0ff25c66432adbca172d4",
+      "hunty_substatus": "Retired",
+      "description": "Hunty que abandona el programa. ",
+      "hunty_substatus_id": "d109ac74df282488efd1dd7621a847d2",
+      "mentor_tab_id": 4.0,
+      "mentor_tab_name": "historic"
+    },
+    {
+      "status_id": "57d7327bf3c0ff25c66432adbca172d4",
+      "hunty_substatus": "Fired",
+      "description": "Usuario despedido",
+      "hunty_substatus_id": "666fee8e2387f4f915bcc76393609dcf",
+      "mentor_tab_id": 4.0,
+      "mentor_tab_name": "historic"
+    },
+    {
+      "status_id": "04b9075a88c502c2ca6a12c27e6d9b87",
+      "hunty_substatus": "Hiring Announcement",
+      "description": "El hunty anuncia su contratacion",
+      "hunty_substatus_id": "a026aa732d6dcff0a1e114002e9f686e",
+      "mentor_tab_id": 3.0,
+      "mentor_tab_name": "pending to close"
+    },
+    {
+        "status_id": "04b9075a88c502c2ca6a12c27e6d9b87",
+        "hunty_substatus": "Hiring close request",
+        "description": "El hunty debe aceptar la solicitud de cierre de contratacion",
+        "hunty_substatus_id": "8f6a30feaf555a8725d3905b8270b1dd"
+    },
+    {
+      "status_id": "04b9075a88c502c2ca6a12c27e6d9b87",
+      "hunty_substatus": "Hiring Confirmed",
+      "description": "El hunty es contratado ",
+      "hunty_substatus_id": "c8a6aeddfbce9aba089aa6231591ffe7",
+      "mentor_tab_id": 4.0,
+      "mentor_tab_name": "historic"
+    }
+  ]

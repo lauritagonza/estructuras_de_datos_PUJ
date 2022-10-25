@@ -72,108 +72,100 @@ bool full_node(NodoQuad* nodo)
 
 bool NodoQuad::insert(int val, NodoQuad* nodo) {
   bool res = false;
-  bool movement;
   bool full = false;
   NodoQuad *actual_node = nodo;
   NodoQuad *new_node;
 
-  while (!res)
+  if (actual_node->obtenerDato() == 2)
+  {
+    if (actual_node->obtenerHijoSupIzq() == NULL)
     {
-      movement = false;
-      if (actual_node->obtenerDato() == 2)
+      new_node = new NodoQuad(val);
+      actual_node->fijarHijoSupIzq(new_node);
+      return true;
+    }
+    else if (actual_node->obtenerHijoSupIzq() != NULL)
+    {
+      if (actual_node->obtenerHijoSupIzq()->obtenerDato() == 2)
       {
-        if ((actual_node->obtenerHijoSupIzq() == NULL) & (movement == false))
+        full = full_node(actual_node->obtenerHijoSupIzq());
+      
+        if (full == false)
         {
-          new_node = new NodoQuad(val);
-          actual_node->fijarHijoSupIzq(new_node);
-          return true;
-        }
+          res = this->insert(val, actual_node->obtenerHijoSupIzq());
 
-        else if ((actual_node->obtenerHijoSupIzq() != NULL) & (movement == false))
-        {
-          if (actual_node->obtenerHijoSupIzq()->obtenerDato() == 2)
-          {
-            full = full_node(actual_node->obtenerHijoSupIzq());
-          
-            if (full == false)
-            {
-              actual_node = actual_node->obtenerHijoSupIzq();
-              movement = true;
-            }
-          }
-        }
-
-        if ((actual_node->obtenerHijoSupDer() == NULL) & (movement == false))
-        {
-          new_node = new NodoQuad(val);
-          actual_node->fijarHijoSupDer(new_node);
-          return true;
-        }
-
-        else if ((actual_node->obtenerHijoSupDer() != NULL) & (movement == false))
-        {
-          if (actual_node->obtenerHijoSupDer()->obtenerDato() == 2)
-          {
-            full = full_node(actual_node->obtenerHijoSupDer());
-            
-            if (full == false)
-            {
-              actual_node = actual_node->obtenerHijoSupDer();
-              movement = true;
-            }
-          }
-        }
-
-        if ((actual_node->obtenerHijoInfDer() == NULL) & (movement == false))
-        {
-          new_node = new NodoQuad(val);
-          actual_node->fijarHijoInfDer(new_node);
-          return true;
-        }
-
-        else if ((actual_node->obtenerHijoInfDer() != NULL) & (movement == false))
-        {
-          if (actual_node->obtenerHijoInfDer()->obtenerDato() == 2)
-          {
-            full = full_node(actual_node->obtenerHijoInfDer());
-          
-            if (full == false)
-            {
-              actual_node = actual_node->obtenerHijoInfDer();
-              movement = true;
-            }
-          }
-          
-        }
-
-        if ((actual_node->obtenerHijoInfIzq() == NULL) & (movement == false))
-        {
-          new_node = new NodoQuad(val);
-          actual_node->fijarHijoInfIzq(new_node);
-          return true;
-        }
-
-        else if ((actual_node->obtenerHijoInfIzq() != NULL) & (movement == false))
-        {
-          if (actual_node->obtenerHijoInfIzq()->obtenerDato() == 2)
-          {
-            full = full_node(actual_node->obtenerHijoInfIzq());
-            
-            if (full == false)
-            {
-              actual_node = actual_node->obtenerHijoInfIzq();
-              movement = true;
-            }
-          }
+          if (res == true)
+            return true;
         }
       }
-
-      full = false;
-
-      if (!movement)
-        return false;
     }
-  return true;
+
+    if (actual_node->obtenerHijoSupDer() == NULL)
+    {
+      new_node = new NodoQuad(val);
+      actual_node->fijarHijoSupDer(new_node);
+      return true;
+    }
+    else if (actual_node->obtenerHijoSupDer() != NULL)
+    {
+      if (actual_node->obtenerHijoSupDer()->obtenerDato() == 2)
+      {
+        full = full_node(actual_node->obtenerHijoSupDer());
+        
+        if (full == false)
+        {
+          res = this->insert(val, actual_node->obtenerHijoSupDer());
+
+          if (res == true)
+            return true;
+        }
+      }
+    }
+    if (actual_node->obtenerHijoInfDer() == NULL)
+    {
+      new_node = new NodoQuad(val);
+      actual_node->fijarHijoInfDer(new_node);
+      return true;
+    }
+    else if (actual_node->obtenerHijoInfDer() != NULL)
+    {
+      if (actual_node->obtenerHijoInfDer()->obtenerDato() == 2)
+      {
+        full = full_node(actual_node->obtenerHijoInfDer());
+      
+        if (full == false)
+        {
+          res = this->insert(val, actual_node->obtenerHijoInfDer());
+
+          if (res == true)
+            return true;
+        }
+      }
+      
+    }
+    if (actual_node->obtenerHijoInfIzq() == NULL)
+    {
+      new_node = new NodoQuad(val);
+      actual_node->fijarHijoInfIzq(new_node);
+      return true;
+    }
+    else if (actual_node->obtenerHijoInfIzq() != NULL)
+    {
+      if (actual_node->obtenerHijoInfIzq()->obtenerDato() == 2)
+      {
+        full = full_node(actual_node->obtenerHijoInfIzq());
+        
+        if (full == false)
+        {
+          res = this->insert(val, actual_node->obtenerHijoInfIzq());
+
+          if (res == true)
+            return true;
+        }
+      }
+    }
+  }
+  return false;
 }
 
 // eof - NodoQuad.hxx

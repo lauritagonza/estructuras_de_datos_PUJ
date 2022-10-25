@@ -77,9 +77,9 @@ void save_mtx(int **matrix, int img_size, string nombre_imagen)
 
 void fill_mtx(int **matrix, int x, int y, int act_size, int val)
 {
-  for (int i = x; i < x + act_size; i++)
+  for (int i = x; i < (x + act_size); i++)
   {
-    for (int j = y; j < y + act_size; j++)
+    for (int j = y; j < (y + act_size); j++)
     {
       matrix[i][j] = val;
     }
