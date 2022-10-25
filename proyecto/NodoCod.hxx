@@ -1,47 +1,78 @@
-#ifndef __NODOCOD__H__
-#define __NODOCOD__H__
+#include <iostream>
+#include "NodoCod.h"
 
-#include "Base.h"
+NodoCod::NodoCod() {
+    this->hijoIzq = NULL;
+    this->hijoDer = NULL;
+}
 
-class NodoCod {
-    //Atributos
-    private:
-    Base base;
-    int suma;
-    NodoCod* hijoIzq;
-    NodoCod* hijoDer;
-    
-    public:
-    //Constructores
-    NodoCod();
-    NodoCod(int);
-    NodoCod(Base&);
-    NodoCod(int, Base&);
-    //Destructor
-    ~NodoCod();
-    //Manipuladores
-    int obtenerSuma();
-    void fijarSuma(int);
-    Base& obtenerBase();
-    void fijaBase(Base&);
-    NodoCod* obtenerHijoIzq();
-    NodoCod* obtenerHijoDer();
-    void fijarHijoIzq(NodoCod* izq);
-    void fijarHijoDer(NodoCod* der);
-    bool esHoja();
-    //Operaciones
-};
+NodoCod::NodoCod(int val) {
+    this->suma = val;
+    this->hijoIzq = NULL;
+    this->hijoDer = NULL;
+}
 
-class myComparator: public NodoCod {
-public:
-    int operator() (NodoCod* p1, NodoCod* p2)
-    {
-        return p1->obtenerSuma() > p2->obtenerSuma();
-    }
-};
+NodoCod::NodoCod(Base& bas) {
+    Base b = bas;
+    this->base.FijarFrecuencia(b.ObtenerFrecuencia());
+    this->base.FijarBase(b.ObtenerBase());
+    this->hijoIzq = NULL;
+    this->hijoDer = NULL;
+}
 
-#include "NodoCod.hxx"
+NodoCod::NodoCod(int val, Base &bas) {
+    this->suma = val;
+    Base b = bas;
+    this->base.FijarFrecuencia(b.ObtenerFrecuencia());
+    this->base.FijarBase(b.ObtenerBase());
+    this->hijoIzq = NULL;
+    this->hijoDer = NULL;
+}
 
-#endif // __NODOCOD__H__
+NodoCod::~NodoCod() {
+    if (this->hijoIzq != NULL) {
+        delete this->hijoIzq;
+        this->hijoIzq = NULL;
+        }
 
-// eof - NodoCod.h
+    if (this->hijoDer != NULL) {
+        delete this->hijoDer;
+        this->hijoDer = NULL;
+        }
+}
+
+int NodoCod::obtenerSuma(){
+    return this->suma;
+}
+
+void NodoCod::fijarSuma(int val) {
+    this->suma = val;
+}
+
+Base& NodoCod::obtenerBase() {
+    return this->base;   
+}
+
+void NodoCod::fijaBase(Base& base) {
+    this->base = base;
+}
+
+NodoCod* NodoCod::obtenerHijoIzq() {
+    return this->hijoIzq;
+}
+
+NodoCod* NodoCod::obtenerHijoDer() {
+    return this->hijoDer;
+}
+
+void NodoCod::fijarHijoIzq(NodoCod* izq) {
+    this->hijoIzq = izq;
+}
+
+void NodoCod::fijarHijoDer(NodoCod* der) {
+    this->hijoDer = der;
+}
+
+bool NodoCod::esHoja() {
+    return((this->hijoDer == NULL) && (this->hijoIzq == NULL));
+  }
