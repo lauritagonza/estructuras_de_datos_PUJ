@@ -418,9 +418,36 @@ void codificar(string nombre_archivo, Genoma &genoma)
     }
 
     int ns;
+    ns = genoma.ObtenerNSecuencias();
+    archivo_escritura.write((char *) &ns, sizeof(int));
+    cout << "ns: " << ns << endl;
+
+    std::list<std::string> nombres = genoma.NombresSecuencias();
+    std::list<std::string>::iterator itNom;
+    string nombre;
 
     short int li;
     char sij;
+
+    i = 1;
+    for (itNom = nombres.begin(); itNom != nombres.end(); itNom++)
+    {
+        nombre = itNom->c_str(); 
+        cout << nombre << endl;
+
+        li = nombre.size();
+        archivo_escritura.write((char *) &li, sizeof(short int));
+        cout << endl << "l" << i << ": " << li << endl;
+
+        for (int j = 0; j < li; j++)
+        {
+            sij = nombre[j];
+            archivo_escritura.write((char *) &sij, sizeof(char));
+            cout << "s" << i << (j+1) << ":" << sij << endl;
+        }
+    }
+
+    
 
     long int wi;
     short int xi = 0;
@@ -462,11 +489,11 @@ void decodificar(string nombre_archivo, Genoma &genoma)
         }
         
         archivo_lectura.read((char*)&ns, sizeof(int));
-        cout << "ns: " << ns << endl;
+        cout << endl << "ns: " << ns << endl;
 
         for (int i = 1; i <= ns; i++) {
             archivo_lectura.read((char*)&li, sizeof(short int));
-            cout << "l" << i << ":" << li << endl;
+            cout << endl << "l" << i << ":" << li << endl;
 
             for (int j = 1; j < (li+1) ; j++)
             {

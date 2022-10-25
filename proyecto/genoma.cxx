@@ -77,6 +77,20 @@ void Genoma::ListarSecuencias()
   std::cout << std::endl;
 }
 
+std::list<std::string> Genoma::NombresSecuencias()
+{
+  std::list<Secuencia>::iterator itSec;
+  std::list<std::string> nombres;
+  std::string descripcion;
+
+  for (itSec = l_secuencias.begin(); itSec != l_secuencias.end(); itSec++ )
+  {
+    descripcion = itSec->ObtenerDescripcion();
+    nombres.push_back(descripcion);
+  }
+  return nombres;
+}
+
 void Genoma::EliminarSecuencias()
 {
   l_secuencias.clear();

@@ -14,6 +14,7 @@ class Genoma {
         void setNombre(std::string nom);
         std::string getNombre(); 
         void ListarSecuencias();
+        std::list<std::string> NombresSecuencias();
         std::map<char, long int> HistogramaTotal();
 
         void EliminarSecuencias();
